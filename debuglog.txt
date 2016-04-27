@@ -1,0 +1,245 @@
+vectorniner@kali:~/dbscan/dbscn$ gcc dbmtcanv7.c -lm -lpthread
+vectorniner@kali:~/dbscan/dbscn$ ./a.out infile.txt outfile.txt 11
+0
+0outfile
+1
+1outfile
+2
+2outfile
+3
+3outfile
+4
+4outfile
+5
+5outfile
+6
+6outfile
+7
+7outfile
+8
+8outfile
+9
+9outfile
+10
+10outfile
+names[0]= 0outfile
+names[1]= 1outfile
+names[2]= 2outfile
+names[3]= 3outfile
+names[4]= 4outfile
+names[5]= 5outfile
+names[6]= 6outfile
+names[7]= 7outfile
+names[8]= 8outfile
+names[9]= 9outfile
+names[10]= 10outfile
+arg3= 11
+check size match
+check = 11 
+tharg = 11 
+Enter EPSmin: 15
+starting thread
+i= 0 threadname= 0outfile
+starting thread
+i= 1 threadname= 1outfile
+starting thread
+i= 2 threadname= 2outfile
+thread going
+starting thread
+i= 3 threadname= 3outfile
+thread going
+File name = 3outfile
+starting thread
+thread going
+i= 4 threadname= 4outfile
+thread going
+File name = 3outfile
+File name = 4outfile
+starting thread
+i= 5 threadname= 5outfile
+thread going
+File name = 5outfile
+File name = 3outfile
+2.00
+starting thread
+i= 6 threadname= 6outfile
+2.00
+1.41
+15.00
+i= 2 size= 16
+starting thread
+i= 7 threadname= 7outfile
+thread going
+File name = 7outfile
+2.00
+1.41
+15.00
+i= 2 size= 14
+x(4.00),y(5.00) -> x'(5.00),y'(6.00) = 1.414
+5.00
+2.24
+15.00
+i= 3 size= 14
+x(4.00),y(5.00) -> x'(6.00),y'(6.00) = 2.236
+8.00
+2.83
+15.00
+i= 4 size= 14
+x(4.00),y(5.00) -> x'(6.00),y'(7.00) = 2.828
+13.00
+3.61
+15.00
+i= 5 size= 14
+x(4.00),y(5.00) -> x'(7.00),y'(7.00) = 3.606
+18.00
+4.24
+15.00
+i= 6 size= 14
+x(4.00),y(5.00) -> x'(7.00),y'(8.00) = 4.243
+25.00
+5.00
+15.00
+i= 7 size= 14
+x(4.00),y(5.00) -> x'(8.00),y'(8.00) = 5.000
+32.00
+5.66
+15.00
+i= 8 size= 14
+x(4.00),y(5.00) -> x'(8.00),y'(9.00) = 5.657
+41.00
+6.40
+15.00
+i= 9 size= 14
+thread going
+File name = 7outfile
+2.00
+1.41
+15.00
+i= 2 size= 8
+x(7.00),y(8.00) -> x'(8.00),y'(9.00) = 1.414
+2.00
+1.41
+15.00
+i= 2 size= 12
+x(3.00),y(4.00) -> x'(4.00),y'(5.00) = 1.414
+5.00
+2.24
+15.00
+i= 3 size= 16
+x(3.00),y(4.00) -> x'(5.00),y'(5.00) = 2.236
+8.00
+2.83
+15.00
+i= 4 size= 16
+2.00
+1.41
+15.00
+i= 2 size= 8
+x(4.00),y(5.00) -> x'(9.00),y'(9.00) = 6.403
+50.00
+7.07
+15.00
+i= 10 size= 14
+x(4.00),y(5.00) -> x'(9.00),y'(10.00) = 7.071
+61.00
+7.81
+15.00
+i= 11 size= 14
+x(4.00),y(5.00) -> x'(10.00),y'(10.00) = 7.810
+72.00
+8.49
+15.00
+i= 12 size= 14
+x(4.00),y(5.00) -> x'(10.00),y'(11.00) = 8.485
+starting thread
+i= 8 threadname= 8outfile
+*** glibc detected *** ./a.out: double free or corruption (out): 0x000000000086a220 ***
+1.41
+starting thread
+thread going
+2.00
+1.41
+15.00
+i= 2 size= 16
+5.00
+2.24
+15.00
+i= 3 size= 8
+x(3.00),y(4.00) -> x'(5.00),y'(6.00) = 2.828
+13.00
+3.61
+15.00
+i= 5 size= 16
+15.00
+i= 2 size= 16
+File name = 8outfile
+x(7.00),y(8.00) -> x'(9.00),y'(9.00) = 2.236
+8.00
+2.83
+15.00
+i= 4 size= 8
+x(3.00),y(4.00) -> x'(6.00),y'(6.00) = 3.606
+/lib/x86_64-linux-gnu/libc.so.618.00
+(4.24
+cfree15.00
+i= 6 size= 16
+thread going
+File name = 8outfile
+x(7.00),y(8.00) -> x'(9.00),y'(10.00) = 2.828
+13.00
+2.00
+1.41
+15.00
+00400000-00402000 r-xp 00000000 08:05 947936                             /home/vectorniner/dbscan/dbscn/a.out
+00601000-00602000 rw-p 00001000 08:05 947936                             /home/vectorniner/dbscan/dbscn/a.out
+0086a000-0088b000 rw-p 00000000 00:00 0                                  [heap]
+7fc440000000-7fc440021000 rw-p 00000000 00:00 0 
+7fc440021000-7fc444000000 ---p 00000000 00:00 0 
+7fc44558e000-7fc4455a3000 r-xp 00000000 08:05 790447                     /lib/x86_64-linux-gnu/libgcc_s.so.1
+7fc4455a3000-7fc4457a3000 ---p 00015000 08:05 790447                     /lib/x86_64-linux-gnu/libgcc_s.so.1
+7fc4457a3000-7fc4457a4000 rw-p 00015000 08:05 790447                     /lib/x86_64-linux-gnu/libgcc_s.so.1
+7fc4457a4000-7fc4457a5000 ---p 00000000 00:00 0 
+7fc4457a5000-7fc445fa5000 rw-p 00000000 00:00 0                          [stack:3628]
+7fc445fa5000-7fc445fa6000 ---p 00000000 00:00 0 
+7fc445fa6000-7fc4467a6000 rw-p 00000000 00:00 0                          [stack:3627]
+7fc4467a6000-7fc4467a7000 ---i= 2 size= 6
+x(3.00),y(4.00) -> x'(6.00),y'(7.00) = 4.243
+p 00000000 00:00 0 
+7fc4467a7000-7fc446fa7000 rw-p 00000000 00:00 0                          [stack:3626]
+7fc446fa7000-7fc446fa8000 ---p 00000000 00:00 0 
+7fc446fa8000-7fc4477a8000 rw-p 00000000 00:00 0                          [stack:3625]
+7fc4477a8000-7fc4477a9000 ---p 00000000 00:00 0 
+7fc4477a9000-7fc447fa9000 rw-p 00000000 00:00 0                          [stack:3624]
+7fc447fa9000-7fc447faa000 ---p 00000000 00:00 0 
+7fc447faa000-7fc4487aa000 rw-p 00000000 00:00 0                          [stack:3623]
+7fc4487aa000-7fc4487ab000 ---p 00000000 00:00 0 
+7fc4487ab000-7fc448fab000 rw-p 00000000 00:00 0                          [stack:3622]
+7fc448fab000-7fc448fac000 ---p 00000000 00:00 0 
+7fc448fac000-7fc4497ac000 rw-p 00000000 00:00 0                          [stack:3621]
+7fc4497ac000-7fc4497ad000 ---p 00000000 00:00 0 
+7fc4497ad000-7fc449fad000 rw-p 00000000 00:00 0                          [stack:3620]
+7fc449fad000-7fc44a12e000 r-xp 00000000 08:05 804952                     /lib/x86_64-linux-gnu/libc-2.13.so
+25.00
+5.00
+15.00
+7fc44a12e000-7fc44a32e000 ---p 00181000 08:05 804952                     /lib/x86_64-linux-gnu/libc-2.13.so
+7fc44a32e000-7fc44a332000 r--p 00181000 08:05 804952                     /lib/x86_64-linux-gnu/libc-2.13.so
+7fc44a332000-7fc44a333000 rw-p 00185000 08:05 804952                     /lib/x86_64-linux-gnu/libc-2.13.so
+7fc44a333000-7fc44a338000 rw-p 00000000 00:00 0 
+7fc44a338000-7fc44a34f000 r-xp 00000000 08:05 808981                     /lib/x86_64-linux-gnu/libpthread-2.13.so
+7fc44a34f000-7fc44a54e000 ---p 00017000 08:05 808981                     /lib/x86_64-linux-gnu/libpthread-2.13.so
+7fc44a54e000-7fc44a54f000 r--p 00016000 08:05 808981                     /lib/x86_64-linux-gnu/libpthread-2.13.so
+7fc44a54f000-7fc44a550000 rw-p 00017000 08:05 808981                     /lib/x86_64-linux-gnu/libpthread-2.13.so
+7fc44a550000-7fc44a554000 rw-p 00000000 00:00 0 
+7fc44a554000-7fc44a5d5000 r-xp 00000000 08:05 806199                     /lib/x86_64-linux-gnu/libm-2.13.so
+7fc44a5d5000-7fc44a7d4000 ---p 0008100i= 7 size= 16
+x(3.00),y(4.00) -> x'(4.00),y'(5.00) = 1.414
+5.00
+2.24
+15.00
+i= 3 size= 16
+x(3.00),y(4.00) -> x'(5.00),y'(5.00) = 2.236
+8.00
+2.83
+Aborted
+
