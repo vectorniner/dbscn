@@ -14,6 +14,7 @@ struct job{
 	char *filename;
         double *jobstorage;
         double EpsMin;
+	int MinPts;
         int elements;
 };
 
@@ -27,7 +28,7 @@ int main(int argc, char *argv[]){
         FILE *inPtr;    //pointer for file that is read from
         FILE *outPtr;   //pointer for file that is written to
         int check,i,G;
-	int tharg,tharg2;
+	int tharg,tharg2,mnpts;
 	tharg= atoi(argv[3]);
 	double *memory;
 	double EPSmin=0;
@@ -98,7 +99,9 @@ int main(int argc, char *argv[]){
 	printf("Enter EPSmin: ");
 	scanf("%lf",&EPSmin);
 	//printf("memory[0]= %lf\n",*memory); //error check
-
+	
+	printf("Enter MinPoints: ");
+        scanf("%d",&mnpts);
 	
 	struct job *jobptr = malloc(sizeof *jobptr);
 	for(i=0;i< tharg;i++)
@@ -112,6 +115,7 @@ int main(int argc, char *argv[]){
 	        	jobptr->jobstorage = (memory+(2*i));
 	        	jobptr->EpsMin = EPSmin;
 	        	jobptr->elements = 2*(tharg-i);
+			jobptr->MinPnts = mnpts;
 			iret1 = pthread_create( &tid[i], NULL, scann, jobptr);
         		if(iret1)
         		{
@@ -184,6 +188,7 @@ void* scann(void *jobs)
 	char *fname=jobptr2->filename;
 	double *storage2=jobptr2->jobstorage;
 	double epsmin=jobptr2->EpsMin;
+	int mnpoints=jobptr2->MinPts;
 	int sizes=jobptr2->elements;
 	pthread_mutex_unlock(&lock);
 	
@@ -228,19 +233,40 @@ void* scann(void *jobs)
                 {
                         fprintf(fiptr,"x(%lf),y(%lf) -> x'(%lf),y'(%lf) = %lf\n",x,y,x2,y2,distance);
                         printf("x(%.02lf),y(%.02lf) -> x'(%.02lf),y'(%.02lf) = %.03lf\n",x,y,x2,y2,distance);
-                }
+                	mnpoints++;
+		}
         }
 	
 	free(storage2);
 	free(jobs);	
 	free(fname);
 	fclose(fiptr); //closes write file
+	
+//function to add number of points to the end of the filename.
+	int ret;
+	char *string;
+        string[0] = '\0';
+        asprintf(&string, "%d", mnpoints);
+        printf("%s\n", string);
+        char oldname[] = fname;
+	strcat(fname,string);
+	printf("%s\n", fname);
+	ret = rename(oldname, fname);
+	if(ret == 0) 
+	{
+		printf("File renamed successfully");
+	}
+   	else 
+   	{
+     		printf("Error: unable to rename the file");
+   	}
+//end of filname minpoints function
 }
 
 
 void mrgCluster(char *fileNames[][],int numOfiles)
 {
-		int i,j,b=0;
+		int i,j,b=0,clstpts;
 		char c;
 		double k,l,tempk,templ;
 		char cluster[100]= '\0';
@@ -271,11 +297,25 @@ void mrgCluster(char *fileNames[][],int numOfiles)
 							if(c=='_')
 			                        	{
                         			        	b=1;
-								j++;
                                 				break;
                         				}
                         				else if(isalpha(c))
-                                			break;
+							{
+                                				b==3;
+								while (c= cluster[++j]) != '\0')
+                                                		{
+                                                        		if(isalpha(c))
+                                                                		break;
+                                                        		else if(isdigit(c))
+                                                        		}
+										clstpts=((double)c - '0');
+                                                        		}
+                                                        		else
+                                                                		break;
+                                                		}
+
+								break;
+							}
 							else if(isdigit(c))
 							{
 								tempk= tempk*10;
@@ -292,7 +332,22 @@ void mrgCluster(char *fileNames[][],int numOfiles)
 					 	while (c= cluster[++j]) != '\0')
                                         	{
                                                 	if(isalpha(c))
+							{
+								b==3;
+                                                                while (c= cluster[++j]) != '\0')
+                                                                {
+                                                                        if(isalpha(c))
+                                                                                break;
+                                                                        else if(isdigit(c))
+                                                                        }
+                                                                                clstpts=((double)c - '0');
+                                                                        }
+                                                                        else
+                                                                                break;
+                                                                }
+
                                                         	break;
+							}
                                                 	else if(isdigit(c))
                                                 	{
                                                         	templ= templ*10;
