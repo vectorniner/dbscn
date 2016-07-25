@@ -56,7 +56,6 @@ int main(int argc, char *argv[]){
 	for(i = 0; i < tharg; ++i )
     	{	
 		char *string;
-		string[0] = '\0';
                 asprintf(&string,"%d",i);
                 printf("%s\n", string);
 		strcat(string,str1);
@@ -256,7 +255,6 @@ void* scann(void *jobs)
 //function to add number of points to the end of the filename.
 	int ret;
 	char *stringb;
-        stringb[0] = '\0';
         asprintf(&stringb, "%d", mnpoints);
         printf("%s\n", stringb);
         char oldname[PATH_MAX];
