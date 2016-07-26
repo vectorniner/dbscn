@@ -34,6 +34,7 @@ struct job{
 
 
 pthread_mutex_t lock;
+
 int datagrabber(FILE *fptr, double *storage);
 void* scann(void *);
 
@@ -47,7 +48,8 @@ int main(int argc, char *argv[]){
 	double *memory, *initMem;
 	double EPSmin=0;
 	tharg2= 2*tharg;
-	char str1[20]="outfile";
+	char str1[20];
+	strcpy(str1,argv[2]);
 	char str2[20];
 	pthread_t tid[tharg];
 
@@ -56,8 +58,8 @@ int main(int argc, char *argv[]){
 	{
         	printf("\n mutex init failed\n");
         	return 1;
-	}	
-	
+	}
+
 	char names[tharg][100];
 	for(i = 0; i < tharg; ++i )
     	{	
@@ -99,6 +101,7 @@ int main(int argc, char *argv[]){
                         exit(1);
                 }
 	}
+	
 	check = datagrabber(inPtr,memory);
 	//check memory values
 	for(i=0;i<tharg2;i++)
@@ -128,9 +131,9 @@ int main(int argc, char *argv[]){
 	printf("Enter MinPoints: ");
         scanf("%d",&mnpts);
 
+	struct job *jobptr = malloc(sizeof *jobptr);
 
 	
-	struct job *jobptr = malloc(sizeof *jobptr);
 	for(i=0;i< tharg;i++)
 	{
 		
@@ -156,6 +159,7 @@ int main(int argc, char *argv[]){
 	for(h=0;h<tharg;h++)
 	{
 		pthread_join(tid[h], NULL);
+	
 	}
 	puts("scan complete");	
 
@@ -163,6 +167,7 @@ int main(int argc, char *argv[]){
 	fclose(inPtr);
 	free (memory);
 	free (jobptr);
+	pthread_mutex_destroy(&lock);
 	return 0;
 }
 
@@ -209,9 +214,13 @@ int datagrabber(FILE *fptr, double *storage)
 void* scann(void *jobs)
 {
 	puts("thread going");
+	double x,y,x2,y2,distance,z, tempy, tempx, *temptr;
+        int i;
+
+	pthread_mutex_lock(&lock);
+
 	struct job *jobptr2 = jobs;	
 	
-	pthread_mutex_lock(&lock);
 //	FILE *fiptr=jobptr2->fileptr;
 	char *fname=jobptr2->filename;
 	double *storage2=jobptr2->jobstorage;
@@ -219,7 +228,13 @@ void* scann(void *jobs)
 	double epsmin=jobptr2->EpsMin;
 	int mnpoints=jobptr2->MinPts;
 	int sizes=jobptr2->elements;
-	pthread_mutex_unlock(&lock);
+	
+	pthread_mutex_unlock(&lock);	
+	x=*storage2;
+        printf("%.02f\n",x);
+        y=*(storage2+1);
+        printf("%.02f\n",y);
+
 	
 	printf("File name = %s\n",fname);	
 
@@ -233,26 +248,14 @@ void* scann(void *jobs)
 
 
 //	printf("storage2= %.02lf\n",*storage2);
-	double x,y,x2,y2,distance,z, tempy, tempx, *temptr;
-        int i;
-	pthread_mutex_lock(&lock);	
 
-	x=*storage2;
-        printf("%.02f\n",x);
-        y=*(storage2+1);
-        printf("%.02f\n",y);
-	pthread_mutex_unlock(&lock);
-	
-	temptr = storage2;
 	storage2 = Initmem; 
         for(i=0;i < (sizes);(i+=2))
         {
-                pthread_mutex_lock(&lock);
 		x2=*(storage2+i);
 //                printf("%.02f\n",x2);
 		y2=*(storage2+(i+1));
 //                printf("%.02f\n",y2);
-		pthread_mutex_unlock(&lock);
 		
 		tempy= abs(y2-y);
 		tempx= abs(x2-x);
