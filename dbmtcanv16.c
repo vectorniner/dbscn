@@ -50,7 +50,7 @@ pthread_mutex_t lock;
 int datagrabber(FILE *fptr, double *storage);
 void* scann(void *);
 void mrgCluster(char fileNames[][100],int numOfiles);
-void filenames(char cluster[],int *values);
+void filenames(char cluster[],double *values);
 
  
 int main(int argc, char *argv[]){
@@ -120,7 +120,7 @@ int main(int argc, char *argv[]){
                 outPtr = fopen(argv[2],"w+");
                 if(!outPtr)
 		{ //if error appending
-                        perror("File could not opened for writing:");
+                        perror("File could not be opened for writing:");
                         exit(1);
                 }
 	}
@@ -343,7 +343,7 @@ void mrgCluster(char fileNames[][100],int numOfiles)
 	FILE *master;
 	FILE *slave;
 	int i,h,hnd=0;
-	double handoff[3]=0;
+	double handoff[3]={0};
 	char c;
 	double k,l,clstptsA,tempk, templ, clstptsB;
 	char clusterc[100];
@@ -358,35 +358,34 @@ void mrgCluster(char fileNames[][100],int numOfiles)
 		l = handoff[1];
 		clstptsA = handoff[2];	
 		strcpy(clusterc,fileNames[h]);
-                filenames(clusterc,handoff); 
-                tempk = handoff[0];
+                //retrieve dd_ddcluster and # of points in cluster
+		filenames(clusterc,handoff); 
+		tempk = handoff[0];
                 templ = handoff[1];
                 clstptsB = handoff[2];
 
 		printf("tempk= %.2lf\n",tempk);
-			printf("templ= %.2lf\n",templ);
-			printf("clstpts= %.2lf\n",clstpts);
+		printf("templ= %.2lf\n",templ);
+		printf("clstpts= %.2lf\n",clstptsB);
 			
-			master = fopen(clusterb,"a");
-		        if(!master)
-        		{ //if error appending
-                		perror("File could not open for writing:");
-                		exit(1);
-        		}
+		master = fopen(clusterb,"a");
+		if(!master)
+        	{ //if error appending
+                	perror("File could not open for writing:");
+                	exit(1);
+        	}
 			
-
-
-			tempk=0;
-			templ=0;
-			clstpts=0;
-			//need to go to next file and compare name to see
-			//if point is in file name.
+		tempk=0;
+		templ=0;
+		clstptsB=0;
+		//need to go to next file and compare name to see
+		//if point is in file name.
 	}
 }
 
 void filenames(char cluster[],double *values)
 {
-	int j=0,b=0,clstpts=0;
+	int j=0,b=0;
 	double templ=0, tempk=0, clstpts=0;
 	char c;
 	while( (c= cluster[j]) != '\0')
