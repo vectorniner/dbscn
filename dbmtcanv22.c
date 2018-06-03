@@ -246,7 +246,7 @@ int datagrabber(FILE *fptr, double *storage)
 			c=fgetc(fptr);
 			if(c=='\n')
 	                {
-        	                *(storage+j)= temp;
+        	                //*(storage+j)= temp;
 				i++;
                 	        j++;
 				c=fgetc(fptr);
@@ -255,6 +255,7 @@ int datagrabber(FILE *fptr, double *storage)
 			{
                         	*(storage+j)= temp;
 				j++;
+				temp=0;
 				c=fgetc(fptr);
                 	}
 			else if(isdigit(c))
